@@ -4,8 +4,8 @@
   "description": "node lab 1",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node index.js"
-  },
+  "start": "nodemon --exec babel-node index.js"
+},
   "author": "connorflynn4",
   "license": "ISC",
   "devDependencies": {
