@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Enterprise Web Cars</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="icon" href="images/favicon.ico">
+      <!-- Custom CSS -->
+      <link type="text/css" rel="stylesheet" href="stylesheets/style.css" />
+      <!-- Bootstrap core CSS -->
+      <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>
+      <!-- Bootstrap theme -->
+      <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" rel="stylesheet"/>
+   </head>
+   <body>
+      <!-- Nav bar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+         <div class="container">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+               <ul class="nav navbar-nav">
+                  <li class="active"><a href="#">Home</a> </li>
+                  <li><a href="stock/cars.html">Cars</a> </li>
+                  <li><a href="about/directions.html">Directions</a> </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <!-- Bootstrap Container -->
+      <div class="container theme-showcase" role="main">
+         <div class="jumbotron">
+            <h1>Enterprise Web Cars</h1>
+            <p>The best selection of commercial and private cars in Ireland.</p>
+         </div>
+         <p>We have the biggest selection of commercial and private cars in Ireland. Check out our <a href="stock/cars.html"> new cars</a>.
+            This week we recommend <em>the Ford Mondeo</em>. What a car! 
+         </p>
+         <h2>Directions</h2>
+         <p>
+            You'll find us right in the center of Waterford. If you need help finding
+            us, check out our
+            <a href="about/directions.html">detailed directions</a>.
+            Come join us!
+         </p>
+         <p class="finance">
+            Thinking of buying a car but don't have the cash? We've got the car loan for you! With a variable rate loan from our financial partners carsharks.com you have the option of making extra repayments and clear your loan early. Lending criteria terms and conditions apply. For Consumer Hire Purchase of &euro;7,000 or more...
+         </p>
+         <form class="form-inline" role="form">
+            <label>Send us your email to keep informed about our great deals</label><br/>
+            <div class="form-group">
+               <input  type="email" id="email" class="form-control" placeholder="Enter email"/>
+            </div>
+            <input type="button" value="Go" onclick="console.log(document.getElementById('email').value)" >
+         </form>
+      </div>
+   </body>
+   <!-- Bootstrap core JavaScript
+      ================================================== -->
+   <!-- Placed at the end of the document so the pages load faster -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</html>
+ 
