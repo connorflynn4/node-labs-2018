@@ -1,51 +1,56 @@
-
 import express from 'express';
-import {contacts} from './contacts';
+import Contact from './contactModel';
 
 const router = express.Router(); // eslint-disable-line
 
 router.get('/', (req, res) => {
-  res.send({contacts: contacts});
+  Contact.find((err, contacts) => {
+    if (err) return handleError(res, err);
+    return res.json(200, contacts);
+  });
 });
 
 router.post('/', (req, res) => {
-        let newContact = req.body;
-        if (newContact){
-          contacts.push({name: newContact.name, address : newContact.address, phone_number: newContact.phone_number }) ;
-          res.status(201).send({message: "Contact Created"});
-      }else{
-            res.status(400).send({message: "Unable to find Contact in request. No Contact Found in body"});
-      }
+  Contact.create(req.body, function(err, contact) {
+    if (err) return handleError(res, err);
+    return res.json(201, contact);
+  });
 });
 
 // Update a contact
 router.put('/:id', (req, res) => {
-     const key = req.params.id;
-     const updateContact = req.body;
-     const index = contacts.map((contact)=>{
-return contact.phone_number;
-}).indexOf(key);
-            if (index !== -1) {
-               contacts.splice(index, 1, {name: updateContact.name, address: updateContact.address,
-               phone_number: updateContact.phone_number});
-               res.status(200).send({message: 'Contact Updated'});
-              } else {
-          res.status(400).send({message: 'Unable to find Contact in request. No Contact Found in body'});
-      }
+  if (req.body._id) delete req.body._id;
+  Contact.findById(req.params.id, (err, contact) => {
+    if (err) return handleError(res, err);
+    if (!contact) return res.send(404);
+    const updated = _.merge(contact, req.body);
+    updated.save((err) => {
+      if (err) return handleError(res, err);
+      return res.json(200, contact);
+    });
+  });
 });
 
 // Delete a contact
 router.delete('/:id', (req, res) => {
-     const key = req.params.id;
-     const index = contacts.map((contact)=>{
-return contact.phone_number;
-}).indexOf(key);
-    if (index > -1) {
-contacts.splice(index, 1);
-        res.status(200).send({message: `Deleted contact with phone_number: ${key}.`});
-    } else {
-      res.status(400).send({message: `Unable to find contact with phone_number: ${key}.`});
-      }
+  Contact.findById(req.params.id, (err, contact) => {
+    if (err) return handleError(res, err);
+    if (!contact) return res.send(404);
+    contact.remove(function(err) {
+      if (err) return handleError(res, err);
+      return res.send(204);
+    });
+  });
 });
+
+/**
+ * Handle general errors.
+ * @param {object} res The response object
+ * @param {object} err The error object.
+ * @return {object} The response object
+ */
+function handleError(res, err) {
+  return res.send(500, err);
+};
 
 export default router;

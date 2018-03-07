@@ -7,6 +7,8 @@ import mongoose from 'mongoose';
 import {loadContacts} from './contactsData';
 
 
+
+dotenv.config();
 // Connect to database
 mongoose.connect(process.env.mongoDB);
 // Populate DB with sample data
@@ -15,7 +17,6 @@ if (process.env.seedDb) {
 }
 
 
-dotenv.config();
 
 const app = express();
 

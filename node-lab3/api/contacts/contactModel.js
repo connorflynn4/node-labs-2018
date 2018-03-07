@@ -16,4 +16,13 @@ const ContactSchema = new Schema({
   },
 });
 
+
+ContactSchema.path('address').validate((v)=>{
+    if(v.length>50||v.length<5){
+        return false;
+    }
+    return true;
+
+});
+
 export default mongoose.model('Contact', ContactSchema);
